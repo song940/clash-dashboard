@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import Header from '../components/Header';
 import List from '../components/List';
-import Panel from '../components/Panel';
+import Header from '../components/Header';
+import ProxyGroup from '../components/ProxyGroup';
 
 import './main.css';
 import ClashProxy from '../utils/clash';
@@ -13,21 +13,42 @@ const proxy = ClashProxy({
 });
 
 const App = () => {
-  const [proxies, setProxies] = useState([]);
+  const [proxies, setProxies] = useState({});
   useEffect(() => {
-    proxy.proxies().then(console.log);
-    proxy.traffic(console.log);
+    Promise
+      .resolve()
+      .then(() => proxy.proxies())
+      .then(setProxies);
   }, []);
+
+  const proxyGroups =
+    Object
+      .values(proxies)
+      .filter(proxy => proxy.all)
+      .map(group => {
+        group.proxies = group.all.map(name => proxies[name]);
+        return group;
+      });
+
   return (
     <>
       <Header />
       <List>
-        <List.Item>Global Routing</List.Item>
+        <List.Item>
+          <span>Routing</span>
+          <ul>
+            <li>Global</li>
+            <li>Rule</li>
+            <li>Direct</li>
+          </ul>
+        </List.Item>
         <List.Item>Connectivity Test</List.Item>
       </List>
-      <List title="SERVER" >
-
-      </List>
+      {
+        proxyGroups.map(group => (
+          <ProxyGroup group={group} />
+        ))
+      }
     </>
   );
 };
