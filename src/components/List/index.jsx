@@ -9,9 +9,9 @@ export const List = ({ title, children }) => {
   );
 };
 
-export const Item = ({ children }) => {
+export const Item = ({ children, ...props }) => {
   return (
-    <li className="list-item" >{children}</li>
+    <li className="list-item" {...props} >{children}</li>
   );
 };
 

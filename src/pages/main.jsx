@@ -13,12 +13,17 @@ const proxy = ClashProxy({
 });
 
 const App = () => {
+  const [config, setConfig] = useState({});
   const [proxies, setProxies] = useState({});
   useEffect(() => {
     Promise
       .resolve()
+      .then(() => proxy.config())
+      .then(setConfig)
       .then(() => proxy.proxies())
-      .then(setProxies);
+      .then(setProxies)
+      .then(() => proxy.rules())
+      .then(console.log)
   }, []);
 
   const proxyGroups =
@@ -34,19 +39,19 @@ const App = () => {
     <>
       <Header />
       <List>
-        <List.Item>
+        <List.Item className="routing" >
           <span>Routing</span>
           <ul>
-            <li>Global</li>
-            <li>Rule</li>
-            <li>Direct</li>
+            <li className={config.mode === 'Global' ? 'active' : ''}>Global</li>
+            <li className={config.mode === 'Rule' ? 'active' : ''}>Rule</li>
+            <li className={config.mode === 'Direct' ? 'active' : ''}>Direct</li>
           </ul>
         </List.Item>
         <List.Item>Connectivity Test</List.Item>
       </List>
       {
-        proxyGroups.map(group => (
-          <ProxyGroup group={group} />
+        proxyGroups.map((group, i) => (
+          <ProxyGroup key={i} group={group} onSelect={(name, p) => proxy.switch(name, p.name)} />
         ))
       }
     </>

@@ -17,7 +17,7 @@ const Clash = ({ api, secret }) => {
       .then(() => fetch(api + path, {
         method,
         headers,
-        body,
+        body: body && JSON.stringify(body),
       }));
   };
   return {
@@ -25,18 +25,16 @@ const Clash = ({ api, secret }) => {
      * @docs https://clash.gitbook.io/doc/restful-api/common#获得当前的流量
      * @param {*} cb 
      */
-    traffic(cb) {
-      // return request('get', '/traffic');
+    traffic() {
+      return request('get', '/traffic');
     },
     /**
      * @docs https://clash.gitbook.io/doc/restful-api/common#获得实时日志
      * @param {*} level 
      * @param {*} cb 
      */
-    async logs(level, cb) {
-      const response = await request('get', `/logs?level=${level}`);
-      response.on('data', chunk => cb(JSON.parse(chunk)));
-      return this;
+    logs(level) {
+      return request('get', `/logs?level=${level}`);
     },
     /**
      * @docs https://clash.gitbook.io/doc/restful-api/proxies#获取所有代理
@@ -56,8 +54,8 @@ const Clash = ({ api, secret }) => {
       return Promise
         .resolve()
         .then(() => request('get', `/proxies/${name}`))
-        .then(readStream)
-        .then(JSON.parse)
+        .then(res => res.json())
+
     },
     /**
      * @docs https://clash.gitbook.io/doc/restful-api/proxies#获取单个代理的延迟
@@ -69,8 +67,7 @@ const Clash = ({ api, secret }) => {
       return Promise
         .resolve()
         .then(() => request('get', `/proxies/${name}/delay?url=${url}&timeout=${timeout}`))
-        .then(readStream)
-        .then(JSON.parse)
+        .then(res => res.json())
     },
     /**
      * @docs https://clash.gitbook.io/doc/restful-api/proxies#切换Selector中选中的代理
@@ -81,12 +78,7 @@ const Clash = ({ api, secret }) => {
       return Promise
         .resolve()
         .then(() => request('put', `/proxies/${selector}`, { name }))
-        .then(async res => {
-          if (res.statusCode === 204) return true;
-          const response = await readStream(res);
-          const { error } = JSON.parse(response);
-          throw new Error(error);
-        });
+        .then(res => res.statusCode === 204)
     },
     /**
      * rules
@@ -96,8 +88,7 @@ const Clash = ({ api, secret }) => {
       return Promise
         .resolve()
         .then(() => request('get', '/rules'))
-        .then(readStream)
-        .then(JSON.parse)
+        .then(res => res.json())
         .then(data => data.rules)
     },
     /**
@@ -107,8 +98,7 @@ const Clash = ({ api, secret }) => {
       return Promise
         .resolve()
         .then(() => request('get', '/configs'))
-        .then(readStream)
-        .then(JSON.parse)
+        .then(res => res.json())
     }
   };
 };
