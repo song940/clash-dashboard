@@ -1,17 +1,16 @@
 import React from 'react';
-import Panel from '../Panel';
 
-export const List = ({ title, children }) => {
+import './index.css';
+
+export const List = ({ title, className, children }) => {
   return (
-    <Panel title={title}>
-      <ul className="list">{children}</ul>
-    </Panel>
+    <ul className={ `list ${className}` }>{children}</ul>
   );
 };
 
-export const Item = ({ children, ...props }) => {
+export const Item = ({ className, children, ...props }) => {
   return (
-    <li className="list-item" {...props} >{children}</li>
+    <li className={ `list-item ${className}` } {...props} >{children}</li>
   );
 };
 
