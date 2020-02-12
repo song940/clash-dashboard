@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import List from '../components/List';
+import Panel from '../components/Panel';
 import Header from '../components/Header';
 import ProxyGroup from '../components/ProxyGroup';
 
@@ -38,17 +39,19 @@ const App = () => {
   return (
     <>
       <Header />
-      <List>
-        <List.Item className="routing" >
-          <span>Routing</span>
-          <ul>
-            <li className={config.mode === 'Global' ? 'active' : ''}>Global</li>
-            <li className={config.mode === 'Rule' ? 'active' : ''}>Rule</li>
-            <li className={config.mode === 'Direct' ? 'active' : ''}>Direct</li>
-          </ul>
-        </List.Item>
-        <List.Item>Connectivity Test</List.Item>
-      </List>
+      <Panel>
+        <List>
+          <List.Item className="routing" >
+            <span>Routing</span>
+            <ul>
+              <li className={config.mode === 'Global' ? 'active' : ''}>Global</li>
+              <li className={config.mode === 'Rule' ? 'active' : ''}>Rule</li>
+              <li className={config.mode === 'Direct' ? 'active' : ''}>Direct</li>
+            </ul>
+          </List.Item>
+          <List.Item>Connectivity Test</List.Item>
+        </List>
+      </Panel>
       {
         proxyGroups.map((group, i) => (
           <ProxyGroup key={i} group={group} onSelect={(name, p) => proxy.switch(name, p.name)} />

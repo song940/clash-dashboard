@@ -12,6 +12,21 @@
   .list-item:last-child {
       border-bottom: none;
     }
+.panel {
+    margin: 10px 0;
+    padding: 0 15px;
+    background-color: #fff;
+}
+
+    .panel-title {
+        margin: 0;
+        padding: 10px 0;
+    }
+body {
+  margin: 0;
+  background-color: #efefef;
+}
+
 ul li.active {
     color: red;
   }
