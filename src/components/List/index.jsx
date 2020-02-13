@@ -2,7 +2,7 @@ import React from 'react';
 
 import './index.css';
 
-export const List = ({ title, className, children }) => {
+export const List = ({ className, children }) => {
   return (
     <ul className={ `list ${className}` }>{children}</ul>
   );

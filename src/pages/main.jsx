@@ -35,7 +35,6 @@ const App = () => {
         group.proxies = group.all.map(name => proxies[name]);
         return group;
       });
-
   return (
     <>
       <Header />
@@ -43,11 +42,11 @@ const App = () => {
         <List>
           <List.Item className="routing" >
             <span>Routing</span>
-            <ul>
-              <li className={config.mode === 'Global' ? 'active' : ''}>Global</li>
-              <li className={config.mode === 'Rule' ? 'active' : ''}>Rule</li>
-              <li className={config.mode === 'Direct' ? 'active' : ''}>Direct</li>
-            </ul>
+            <div>
+              <button className={config.mode === 'Global' ? 'active' : ''}>Global</button>
+              <button className={config.mode === 'Rule' ? 'active' : ''}>Rule</button>
+              <button className={config.mode === 'Direct' ? 'active' : ''}>Direct</button>
+            </div>
           </List.Item>
           <List.Item>Connectivity Test</List.Item>
         </List>

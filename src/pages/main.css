@@ -8,3 +8,11 @@ ul {
     color: red;
   }
 }
+
+.routing {
+  display: flex;
+
+  span {
+    flex: 1;
+  }
+}

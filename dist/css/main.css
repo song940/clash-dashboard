@@ -5,7 +5,8 @@
   border-bottom: 1px solid #eee;
 }
   .list-item {
-    padding: 10px 0;
+    padding: 10px;
+    position: relative;
     list-style-type: none;
     border-bottom: 1px solid #eee
   }
@@ -13,14 +14,42 @@
       border-bottom: none;
     }
 .panel {
-    margin: 10px 0;
-    padding: 0 15px;
-    background-color: #fff;
+  margin: 10px 0;
+  background-color: #fff;
 }
-
-    .panel-title {
-        margin: 0;
-        padding: 10px 0;
+  .panel-title {
+    margin: 0;
+    padding: 10px 15px;
+    font-size: 16px;
+  }
+  .panel-body {
+    padding: 0 15px;
+  }
+.proxy-group li.active::before {
+    top: 50%;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    content: '';
+    display: block;
+    border-radius: 5px;
+    position: absolute;
+    background-color: #47c479;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+  .proxy-group .proxy {
+    display: -webkit-box;
+    display: flex;
+  }
+  .proxy-group .proxy-name, .proxy-group .proxy-delay {
+      -webkit-box-flex: 1;
+              flex: 1;
+    }
+  .proxy-group .proxy-delay {
+      color: #999;
+      text-align: right;
+      font-family: monospace;
     }
 body {
   margin: 0;
@@ -29,4 +58,14 @@ body {
 
 ul li.active {
     color: red;
+  }
+
+.routing {
+  display: -webkit-box;
+  display: flex;
+}
+
+.routing span {
+    -webkit-box-flex: 1;
+            flex: 1;
   }

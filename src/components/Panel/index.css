@@ -1,10 +1,12 @@
 .panel {
-    margin: 10px 0;
+  margin: 10px 0;
+  background-color: #fff;
+  &-title {
+    margin: 0;
+    padding: 10px 15px;
+    font-size: 16px;
+  }
+  &-body {
     padding: 0 15px;
-    background-color: #fff;
-
-    &-title {
-        margin: 0;
-        padding: 10px 0;
-    }
+  }
 }

@@ -2,9 +2,9 @@ import React from 'react';
 
 import './index.css';
 
-const Panel = ({ title, children }) => {
+const Panel = ({ title, className, children }) => {
   return (
-    <div className="panel" >
+    <div className={ `panel ${className}` } >
       {
         title && <h3 className="panel-title">{title}</h3>
       }
