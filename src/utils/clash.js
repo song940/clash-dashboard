@@ -94,7 +94,13 @@ const Clash = ({ api, secret }) => {
     /**
      * https://clash.gitbook.io/doc/restful-api/config#获得当前的基础设置
      */
-    config() {
+    config(conf) {
+      if(conf) {
+        return Promise
+        .resolve()
+        .then(() => request('PATCH', '/configs', conf))
+        .then(res => res.status == 204)
+      }
       return Promise
         .resolve()
         .then(() => request('get', '/configs'))

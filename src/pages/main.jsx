@@ -8,7 +8,7 @@ import ProxyGroup from '../components/ProxyGroup';
 import './main.css';
 import ClashProxy from '../utils/clash';
 
-const proxy = ClashProxy({
+const clash = ClashProxy({
   secret: 'song940@163.com',
   api: 'http://lsong.me:9090'
 });
@@ -19,11 +19,11 @@ const App = () => {
   useEffect(() => {
     Promise
       .resolve()
-      .then(() => proxy.config())
+      .then(() => clash.config())
       .then(setConfig)
-      .then(() => proxy.proxies())
+      .then(() => clash.proxies())
       .then(setProxies)
-      .then(() => proxy.rules())
+      .then(() => clash.rules())
       .then(console.log)
   }, []);
 
@@ -35,6 +35,9 @@ const App = () => {
         group.proxies = group.all.map(name => proxies[name]);
         return group;
       });
+
+  const setMode = mode => clash.config({ mode });
+
   return (
     <>
       <Header />
@@ -43,9 +46,9 @@ const App = () => {
           <List.Item className="routing" >
             <span>Routing</span>
             <div>
-              <button className={config.mode === 'Global' ? 'active' : ''}>Global</button>
-              <button className={config.mode === 'Rule' ? 'active' : ''}>Rule</button>
-              <button className={config.mode === 'Direct' ? 'active' : ''}>Direct</button>
+              <button onClick={() => setMode('Global')} className={config.mode === 'Global' ? 'active' : ''}>Global</button>
+              <button onClick={() => setMode('Rule')} className={config.mode === 'Rule' ? 'active' : ''}>Rule</button>
+              <button onClick={() => setMode('Direct')} className={config.mode === 'Direct' ? 'active' : ''}>Direct</button>
             </div>
           </List.Item>
           <List.Item>Connectivity Test</List.Item>
