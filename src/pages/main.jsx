@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import ClashProxy from 'clash-proxy';
+
 import List from '../components/List';
 import Panel from '../components/Panel';
 import Header from '../components/Header';
 import ProxyGroup from '../components/ProxyGroup';
 
 import './main.css';
-import ClashProxy from '../utils/clash';
 
 const clash = ClashProxy({
   secret: 'song940@163.com',
@@ -46,9 +47,9 @@ const App = () => {
           <List.Item className="routing" >
             <span>Routing</span>
             <div>
-              <button onClick={() => setMode('Global')} className={config.mode === 'Global' ? 'active' : ''}>Global</button>
-              <button onClick={() => setMode('Rule')} className={config.mode === 'Rule' ? 'active' : ''}>Rule</button>
-              <button onClick={() => setMode('Direct')} className={config.mode === 'Direct' ? 'active' : ''}>Direct</button>
+              <button className={config.mode === 'Global' ? 'active' : ''} onClick={() => setMode('Global')}  >Global</button>
+              <button className={config.mode === 'Rule' ? 'active' : ''}   onClick={() => setMode('Rule')}    >Rule</button>
+              <button className={config.mode === 'Direct' ? 'active' : ''} onClick={() => setMode('Direct')}  >Direct</button>
             </div>
           </List.Item>
           <List.Item>Connectivity Test</List.Item>
@@ -56,7 +57,7 @@ const App = () => {
       </Panel>
       {
         proxyGroups.map((group, i) => (
-          <ProxyGroup key={i} group={group} onSelect={(name, p) => proxy.switch(name, p.name)} />
+          <ProxyGroup key={i} group={group} onSelect={(name, p) => clash.switch(name, p.name)} />
         ))
       }
     </>

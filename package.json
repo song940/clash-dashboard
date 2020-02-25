@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/song940/react-app/issues"
   },
-  "homepage": "https://github.com/song940/react-app#readme"
+  "homepage": "https://github.com/song940/react-app#readme",
+  "dependencies": {
+    "clash-proxy": "^0.0.2"
+  }
 }
