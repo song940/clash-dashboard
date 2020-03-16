@@ -1,16 +1,4 @@
 .proxy-group {
-  li.active::before {
-    top: 50%;
-    left: 0;
-    width: 5px;
-    height: 5px;
-    content: '';
-    display: block;
-    border-radius: 5px;
-    position: absolute;
-    background-color: #47c479;
-    transform: translateY(-50%);
-  }
   .proxy {
     display: flex;
     &-name, &-delay {

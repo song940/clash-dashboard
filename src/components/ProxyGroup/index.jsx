@@ -9,7 +9,9 @@ const ProxyGroup = ({ group, onSelect }) => {
     if (type !== 'Selector') return;
     onSelect && onSelect(name, proxy);
   };
-  const delay = h => h[0] && h[0].delay;
+  const delay = h => {
+    return (h[0] && h[0].delay) ? `${h[0].delay}ms` : '';
+  };
   return (
     <Panel title={name} className="proxy-group" >
       <List>

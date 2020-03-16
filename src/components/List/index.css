@@ -4,7 +4,7 @@
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
   &-item {
-    padding: 10px;
+    padding: 10px 0px;
     position: relative;
     list-style-type: none;
     border-bottom: 1px solid #eee;

@@ -5,7 +5,7 @@
   border-bottom: 1px solid #eee;
 }
   .list-item {
-    padding: 10px;
+    padding: 10px 0px;
     position: relative;
     list-style-type: none;
     border-bottom: 1px solid #eee
@@ -25,28 +25,18 @@
   .panel-body {
     padding: 0 15px;
   }
-.proxy-group li.active::before {
-    top: 50%;
-    left: 0;
-    width: 5px;
-    height: 5px;
-    content: '';
-    display: block;
-    border-radius: 5px;
-    position: absolute;
-    background-color: #47c479;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
-  }
-  .proxy-group .proxy {
+header h1 {
+        margin-left: 10px;
+    }
+.proxy-group .proxy {
     display: -webkit-box;
     display: flex;
   }
-  .proxy-group .proxy-name, .proxy-group .proxy-delay {
+    .proxy-group .proxy-name, .proxy-group .proxy-delay {
       -webkit-box-flex: 1;
               flex: 1;
     }
-  .proxy-group .proxy-delay {
+    .proxy-group .proxy-delay {
       color: #999;
       text-align: right;
       font-family: monospace;
@@ -57,7 +47,7 @@ body {
 }
 
 .active {
-  color: red;
+  color: green;
 }
 
 .routing {

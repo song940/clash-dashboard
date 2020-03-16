@@ -11,7 +11,7 @@ import './main.css';
 
 const clash = ClashProxy({
   secret: 'song940@163.com',
-  api: 'http://lsong.me:9090'
+  api: 'http://lsong.me:7892'
 });
 
 const App = () => {
@@ -38,7 +38,12 @@ const App = () => {
       });
 
   const setMode = mode => clash.config({ mode });
-
+  const testLatency = () => {
+    console.log('Test Latency', proxies);
+    for (const proxy in proxies) {
+      clash.delay(proxy)
+    }
+  }
   return (
     <>
       <Header />
@@ -48,11 +53,11 @@ const App = () => {
             <span>Routing</span>
             <div>
               <button className={config.mode === 'Global' ? 'active' : ''} onClick={() => setMode('Global')}  >Global</button>
-              <button className={config.mode === 'Rule' ? 'active' : ''}   onClick={() => setMode('Rule')}    >Rule</button>
+              <button className={config.mode === 'Rule' ? 'active' : ''} onClick={() => setMode('Rule')}    >Rule</button>
               <button className={config.mode === 'Direct' ? 'active' : ''} onClick={() => setMode('Direct')}  >Direct</button>
             </div>
           </List.Item>
-          <List.Item>Connectivity Test</List.Item>
+          <List.Item onClick={testLatency} >Connectivity Test</List.Item>
         </List>
       </Panel>
       {
